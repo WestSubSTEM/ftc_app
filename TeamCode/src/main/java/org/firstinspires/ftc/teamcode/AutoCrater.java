@@ -46,7 +46,7 @@ import java.util.List;
 
 @Autonomous(name = "Auto Crater", group = "State")
 //@Disabled
-public class AutoPit extends LinearOpMode  {
+public class AutoCrater extends LinearOpMode  {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
@@ -391,7 +391,7 @@ public class AutoPit extends LinearOpMode  {
 
     public void bumpGold() {
         goStraight(BUMP_FORWARD, .7);
-        goStraight(-(BUMP_FORWARD-5), .7);         //change 10 to 5-7ish to help the angle for the idol
+        goStraight(-(BUMP_FORWARD-10), .7);         //change 10 to 5-7ish to help the angle for the idol
     }
 
 }

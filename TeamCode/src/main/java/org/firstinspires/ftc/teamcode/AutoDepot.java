@@ -47,7 +47,7 @@ import java.util.List;
 
 @Autonomous(name = "Auto Depot", group = "State")
 //@Disabled
-public class AutoBase extends LinearOpMode  {
+public class AutoDepot extends LinearOpMode  {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
@@ -93,10 +93,11 @@ public class AutoBase extends LinearOpMode  {
     public final int BUMP_FORWARD = 25;
     public final int BLOCK_RIGHT = -40;
     public final int BLOCK_LEFT = 50;
+    public final int AFTER_BLOCKS =40;
     public final int SIDEWAYS_TO_WALL = 40;
     public final int LANDER_TO_CENTER_MINERAL = 40;
     public final int ROTATE_TO_ZONE = 90+45;
-    public final int GO_TO_ZONE = 90;
+    public final int GO_TO_ZONE = 95;
     public final int ZONE_TO_PIT = -180;
     // public int turnToPit = (90+45);
     // public int moveToPit = 200;
@@ -174,20 +175,20 @@ public class AutoBase extends LinearOpMode  {
         switch (goldPosition) {
             case CENTER:
                 bumpGold();
-                goSideways(BLOCK_LEFT + BLOCK_LEFT, .8);
+                goSideways(BLOCK_LEFT + AFTER_BLOCKS, .8);
                 break;
             case RIGHT:
                 goSideways(BLOCK_RIGHT, .8);
                 bumpGold();
-                goSideways(-BLOCK_RIGHT + BLOCK_LEFT + BLOCK_LEFT, .8);
+                goSideways(-BLOCK_RIGHT + BLOCK_LEFT + AFTER_BLOCKS, .8);
                 break;
             case LEFT:
                 goSideways(BLOCK_LEFT, .8);
                 bumpGold();
-                goSideways(BLOCK_LEFT + BLOCK_LEFT, .8);
+                goSideways(BLOCK_LEFT + AFTER_BLOCKS, .8);
                 break;
             case NONE:
-                goSideways(BLOCK_LEFT + BLOCK_LEFT, .8);
+                goSideways(BLOCK_LEFT + AFTER_BLOCKS, .8);
                 break;
         }
         if (opModeIsActive()) {
@@ -197,7 +198,7 @@ public class AutoBase extends LinearOpMode  {
             goSideways(SIDEWAYS_TO_WALL, .8);
         }
         if (opModeIsActive()) {
-            rotate(10, .8);
+            rotate(18, .8);
         }
         if (opModeIsActive()) {
             goStraight(GO_TO_ZONE, .8);
@@ -208,6 +209,9 @@ public class AutoBase extends LinearOpMode  {
         }
         if (opModeIsActive()) {
             teamMarkerServo.setPosition(RoverConstants.TEAM_MARKER_UP_POSITION);
+        }
+        if (opModeIsActive()) {
+            rotate(-2, .8);
         }
         if (opModeIsActive()) {
             goStraight(ZONE_TO_PIT, 0.8);

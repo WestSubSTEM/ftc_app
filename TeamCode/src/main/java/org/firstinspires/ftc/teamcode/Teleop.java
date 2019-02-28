@@ -69,7 +69,7 @@ public class Teleop extends OpMode {
         // servo that drops the team marker into the landing zone
         teamMarkerServo = hardwareMap.get(Servo.class, "teamMarkerServo");
         teamMarkerServoActivator = new ServoActivator(teamMarkerServo, RoverConstants.TEAM_MARKER_DOWN_POSITION, RoverConstants.TEAM_MARKER_UP_POSITION);
-        teamMarkerServoActivator.setActivated(true);
+        teamMarkerServoActivator.setActivated(false);
 
         // servo that hooks the servo onto the handle
         hookServo = hardwareMap.get(Servo.class, "hookServo");
@@ -169,7 +169,7 @@ public class Teleop extends OpMode {
 
         // arm rotation
         stickValue = gamepad2.right_stick_x;
-        liftPower = stickValue > 0.2 ? stickValue / 2.0 : 0;
+        liftPower = stickValue > 0.2 ? stickValue / 1.5 : 0;
         liftPower = stickValue < -0.2 ? stickValue / 3.0 : liftPower;
         rotateMotor.setPower(liftPower);
 
